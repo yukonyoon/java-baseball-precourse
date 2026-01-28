@@ -27,7 +27,15 @@ public class BaseballController {
             outputView.printInputMessage();
             String input = inputView.readInputNumber();
             Result result = baseball.calculate(input);
-            outputView.printResultMessage(result);
+            checkResult(result);
+        }
+    }
+
+    private void checkResult(Result result) {
+        outputView.printResultMessage(result);
+
+        if (result.getStrike() == 3) {
+            outputView.printGameOver();
         }
     }
 }

@@ -38,4 +38,8 @@ public class OutputView {
     private void printStrikeAndBall(Result result) {
         System.out.println(result.getStrike() + "스트라이크 " + result.getBall() + "볼");
     }
+
+    public void printGameOver() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+    }
 }
