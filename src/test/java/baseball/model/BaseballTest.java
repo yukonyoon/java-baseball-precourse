@@ -21,8 +21,8 @@ public class BaseballTest {
     }
 
     @Test
-    @DisplayName("숫자 형식이 아닌 입력이 들어오면 예외를 발생시킨다.")
-    void 숫자_입력_예외_테스트_1() throws Exception {
+    @DisplayName("컴퓨터가 3자리의, 중복이 없으며, 1~9 사이의 숫자를 생성할 수 있다.")
+    void 컴퓨터_정답_숫자_생성_테스트() throws Exception {
         // given
         baseball.createAnswer();
 
