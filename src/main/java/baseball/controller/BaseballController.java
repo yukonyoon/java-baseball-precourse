@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.model.Baseball;
+import baseball.model.Result;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -23,9 +24,9 @@ public class BaseballController {
 
     public void run() {
         while (!baseball.getStop()) {
-            baseball.createAnswer();
             outputView.printInputMessage();
             String input = inputView.readInputNumber();
+            Result result = baseball.calculate(input);
         }
     }
 }
