@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.controller.BaseballController;
+import baseball.model.Baseball;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -10,7 +11,9 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        BaseballController controller = new BaseballController(inputView, outputView);
+        Baseball baseball = new Baseball();
+
+        BaseballController controller = new BaseballController(inputView, outputView, baseball);
         controller.run();
     }
 }
