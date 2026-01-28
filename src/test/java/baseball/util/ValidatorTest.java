@@ -40,4 +40,30 @@ public class ValidatorTest {
         // then
         assertThat(result).isFalse();
     }
+
+    @Test
+    @DisplayName("각 자리가 1~9의 범위를 벗어나는 경우 예외를 발생시킨다.")
+    void 숫자_입력_예외_테스트_3() throws Exception {
+        // given
+        String input = "012";
+
+        // when
+        boolean result = validator.validateInput(input);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("중복된 숫자가 포함된 경우 예외를 발생시킨다.")
+    void 숫자_입력_예외_테스트_4() throws Exception {
+        // given
+        String input = "111";
+
+        // when
+        boolean result = validator.validateInput(input);
+
+        // then
+        assertThat(result).isFalse();
+    }
 }
