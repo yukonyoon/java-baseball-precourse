@@ -36,6 +36,18 @@ public class BaseballController {
 
         if (result.getStrike() == 3) {
             outputView.printGameOver();
+            outputView.printRestartMessage();
+            String input = inputView.readRestartInput();
+            checkRestart(input);
         }
+    }
+
+    private void checkRestart(String input) {
+        if (input.equals("2")) {
+            baseball.setStop(true);
+            return;
+        }
+
+        baseball.setAnswer();
     }
 }

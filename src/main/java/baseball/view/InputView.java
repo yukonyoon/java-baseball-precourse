@@ -23,4 +23,12 @@ public class InputView {
         }
         return input;
     }
+
+    public String readRestartInput() {
+        String restart = scanner.nextLine();
+        while (!validator.validateRestart(restart)) {
+            restart = scanner.nextLine();
+        }
+        return restart;
+    }
 }

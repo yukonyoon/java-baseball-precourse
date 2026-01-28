@@ -30,6 +30,17 @@ public class Baseball {
         return this.stop;
     }
 
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
+
+    public void setAnswer() {
+        this.answer = generateRandomNumber();
+        this.set = createSet(answer);
+
+        System.out.println("컴퓨터의 정답 숫자 3개가 생성되었습니다." + this.answer);
+    }
+
     private Set<Character> createSet(String answer) {
         Set<Character> set = new HashSet<>();
         for (char c : answer.toCharArray()) {

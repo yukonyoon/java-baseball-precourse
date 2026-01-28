@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Validator {
 
-    private static int THRESHOLD_LENGTH = 3;
+    private static int THRESHOLD_INPUT_LENGTH = 3;
 
     public boolean validateInput(String input) {
         try{
@@ -19,6 +19,23 @@ public class Validator {
         return true;
     }
 
+    public boolean validateRestart(String restart) {
+        try{
+            checkRestartType(restart);
+        } catch (IllegalArgumentException e) {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            return false;
+        }
+        return true;
+    }
+
+    private void checkRestartType(String restart) {
+        if (!restart.equals("1") && !restart.equals("2")) {
+            System.out.println("[ERROR] " + "1 혹은 2만 허용됩니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
     private void checkNumberType(String input) {
         try {
             Integer.parseInt(input);
@@ -29,7 +46,7 @@ public class Validator {
     }
 
     private void checkNumberLength(String input) {
-        if (input.length() != THRESHOLD_LENGTH) {
+        if (input.length() != THRESHOLD_INPUT_LENGTH) {
             System.out.println("[ERROR] " + "입력 길이가 3이 아닙니다.");
             throw new IllegalArgumentException();
         }
