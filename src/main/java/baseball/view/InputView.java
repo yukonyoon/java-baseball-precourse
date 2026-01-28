@@ -18,7 +18,7 @@ public class InputView {
 
     public String readInputNumber() {
         String input = scanner.nextLine();
-        while (validator.validateInput(input)) {
+        while (!validator.validateInput(input)) {
             input = scanner.nextLine();
         }
         return input;
