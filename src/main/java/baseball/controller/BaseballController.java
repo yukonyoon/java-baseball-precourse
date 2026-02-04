@@ -24,10 +24,20 @@ public class BaseballController {
 
     public void run() {
         while (!baseball.getStop()) {
-            outputView.printInputMessage();
-            String input = inputView.readInputNumber();
+            String input = readInputWithRetry();
             Result result = baseball.calculate(input);
             checkResult(result);
+        }
+    }
+
+    private String readInputWithRetry() {
+        while (true) {
+            try {
+                outputView.printInputMessage();
+                return inputView.readInputNumber();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
         }
     }
 
@@ -36,9 +46,19 @@ public class BaseballController {
 
         if (result.getStrike() == 3) {
             outputView.printGameOver();
-            outputView.printRestartMessage();
-            String input = inputView.readRestartInput();
+            String input = readRestartInputWithRetry();
             checkRestart(input);
+        }
+    }
+
+    private String readRestartInputWithRetry() {
+        while (true) {
+            try {
+                outputView.printRestartMessage();
+                return inputView.readRestartInput();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
         }
     }
 
