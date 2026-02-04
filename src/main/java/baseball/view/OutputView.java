@@ -49,4 +49,8 @@ public class OutputView {
     public void printRestartMessage() {
         System.out.println(RESTART_MESSAGE.getMessage());
     }
+
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

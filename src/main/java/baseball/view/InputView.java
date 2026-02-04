@@ -10,25 +10,39 @@ public class InputView {
 
     private final Scanner scanner;
     private final Validator validator;
+    private final OutputView outputView;
 
-    public InputView() {
+    public InputView(OutputView outputView) {
         this.scanner = new Scanner(System.in);
         this.validator = new Validator();
+        this.outputView = outputView;
     }
 
     public String readInputNumber() {
         String input = scanner.nextLine();
-        while (!validator.validateInput(input)) {
-            input = scanner.nextLine();
+        while (true) {
+            try {
+                validator.validateInput(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+                outputView.printInputMessage();
+                input = scanner.nextLine();
+            }
         }
-        return input;
     }
 
     public String readRestartInput() {
         String restart = scanner.nextLine();
-        while (!validator.validateRestart(restart)) {
-            restart = scanner.nextLine();
+        while (true) {
+            try {
+                validator.validateRestart(restart);
+                return restart;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+                outputView.printRestartMessage();
+                restart = scanner.nextLine();
+            }
         }
-        return restart;
     }
 }

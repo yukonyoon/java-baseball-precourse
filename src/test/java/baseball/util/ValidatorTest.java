@@ -4,7 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class ValidatorTest {
 
@@ -21,11 +22,10 @@ public class ValidatorTest {
         // given
         String input = "aaa";
 
-        // when
-        boolean result = validator.validateInput(input);
-
-        // then
-        assertThat(result).isFalse();
+        // when & then
+        assertThatThrownBy(() -> validator.validateInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자 형식");
     }
 
     @Test
@@ -34,11 +34,10 @@ public class ValidatorTest {
         // given
         String input = "1234";
 
-        // when
-        boolean result = validator.validateInput(input);
-
-        // then
-        assertThat(result).isFalse();
+        // when & then
+        assertThatThrownBy(() -> validator.validateInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("길이가 3");
     }
 
     @Test
@@ -47,11 +46,11 @@ public class ValidatorTest {
         // given
         String input = "012";
 
-        // when
-        boolean result = validator.validateInput(input);
-
-        // then
-        assertThat(result).isFalse();
+        // when & then
+        assertThatThrownBy(() -> validator
+                .validateInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1~9");
     }
 
     @Test
@@ -60,11 +59,10 @@ public class ValidatorTest {
         // given
         String input = "111";
 
-        // when
-        boolean result = validator.validateInput(input);
-
-        // then
-        assertThat(result).isFalse();
+        // when & then
+        assertThatThrownBy(() -> validator.validateInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복");
     }
 
     @Test
@@ -73,11 +71,9 @@ public class ValidatorTest {
         // given
         String restart = "2";
 
-        // when
-        boolean result = validator.validateRestart(restart);
-
-        // then
-        assertThat(result).isTrue();
+        // when & then
+        assertThatCode(() -> validator.validateRestart(restart))
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -86,10 +82,20 @@ public class ValidatorTest {
         // given
         String restart = "3";
 
-        // when
-        boolean result = validator.validateRestart(restart);
+        // when & then
+        assertThatThrownBy(() -> validator.validateRestart(restart))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1 혹은 2");
+    }
 
-        // then
-        assertThat(result).isFalse();
+    @Test
+    @DisplayName("유효한 숫자 입력이 들어오면 예외를 발생시키지 않는다.")
+    void 숫자_입력_성공_테스트() throws Exception {
+        // given
+        String input = "123";
+
+        // when & then
+        assertThatCode(() -> validator.validateInput(input))
+                .doesNotThrowAnyException();
     }
 }
