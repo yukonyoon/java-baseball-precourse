@@ -3,6 +3,9 @@ package baseball.util;
 import java.util.HashSet;
 import java.util.Set;
 
+import static baseball.constant.ErrorMessage.*;
+import static baseball.constant.InputMessage.*;
+
 public class Validator {
 
     private static int THRESHOLD_INPUT_LENGTH = 3;
@@ -13,7 +16,7 @@ public class Validator {
             checkNumberLength(input);
             checkDuplicateNumber(input);
         } catch (IllegalArgumentException e) {
-            System.out.print("숫자를 입력해주세요 : ");
+            System.out.print(INPUT_MESSAGE.getMessage());
             return false;
         }
         return true;
@@ -23,7 +26,7 @@ public class Validator {
         try{
             checkRestartType(restart);
         } catch (IllegalArgumentException e) {
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            System.out.println(RESTART_MESSAGE.getMessage());
             return false;
         }
         return true;
@@ -31,7 +34,7 @@ public class Validator {
 
     private void checkRestartType(String restart) {
         if (!restart.equals("1") && !restart.equals("2")) {
-            System.out.println("[ERROR] " + "1 혹은 2만 허용됩니다.");
+            System.out.println(NOT_ONE_OR_TWO_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -40,14 +43,14 @@ public class Validator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] " + "숫자 형식이 압니다.");
+            System.out.println(NOT_NUMBER_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private void checkNumberLength(String input) {
         if (input.length() != THRESHOLD_INPUT_LENGTH) {
-            System.out.println("[ERROR] " + "입력 길이가 3이 아닙니다.");
+            System.out.println(NOT_THREE_DIGIT_NUMBER_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -59,7 +62,7 @@ public class Validator {
             checkRange(c);
 
             if (set.contains(c)) {
-                System.out.println("[ERROR] " + "중복된 숫자가 포함되어 있습니다.");
+                System.out.println(DUPLICATE_NUMBER_ERROR.getMessage());
                 throw new IllegalArgumentException();
             }
 
@@ -69,7 +72,7 @@ public class Validator {
 
     private void checkRange(Character number) {
         if (number == null || !String.valueOf(number).matches("^[1-9]$")) {
-            System.out.println("[ERROR] " + "0~9 숫자만 허용됩니다.");
+            System.out.println(ZERO_NUMBER_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
     }

@@ -2,10 +2,13 @@ package baseball.view;
 
 import baseball.model.Result;
 
+import static baseball.constant.InputMessage.*;
+import static baseball.constant.OutputMessage.*;
+
 public class OutputView {
 
     public void printInputMessage() {
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(INPUT_MESSAGE.getMessage());
     }
 
     public void printResultMessage(Result result) {
@@ -23,27 +26,27 @@ public class OutputView {
     }
 
     private void printNothing() {
-        System.out.println("낫싱");
+        System.out.println(NOTHING);
     }
 
     private void printStrikerOrBall(Result result) {
         if (result.getStrike() > 0) {
-            System.out.println(result.getStrike() + "스트라이크");
+            System.out.println(result.getStrike() + STRIKE.getMessage());
             return;
         }
 
-        System.out.println(result.getBall() + "볼");
+        System.out.println(result.getBall() + BALL.getMessage());
     }
 
     private void printStrikeAndBall(Result result) {
-        System.out.println(result.getStrike() + "스트라이크 " + result.getBall() + "볼");
+        System.out.println(result.getStrike() + STRIKE.getMessage() + " " + result.getBall() + BALL.getMessage());
     }
 
     public void printGameOver() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+        System.out.println(GAME_OVER.getMessage());
     }
 
     public void printRestartMessage() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(RESTART_MESSAGE.getMessage());
     }
 }

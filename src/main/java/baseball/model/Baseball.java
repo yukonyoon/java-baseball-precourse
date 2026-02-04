@@ -13,7 +13,7 @@ public class Baseball {
         this.answer = generateRandomNumber();
         this.set = createSet(answer);
 
-        System.out.println("컴퓨터의 정답 숫자 3개가 생성되었습니다." + this.answer);
+//        System.out.println("컴퓨터의 정답 숫자 3개가 생성되었습니다." + this.answer);
     }
 
     public Baseball(String answer) {
@@ -38,7 +38,7 @@ public class Baseball {
         this.answer = generateRandomNumber();
         this.set = createSet(answer);
 
-        System.out.println("컴퓨터의 정답 숫자 3개가 생성되었습니다." + this.answer);
+//        System.out.println("컴퓨터의 정답 숫자 3개가 생성되었습니다." + this.answer);
     }
 
     private Set<Character> createSet(String answer) {
